@@ -13,9 +13,6 @@ for i in l1:
 for i in l2:
     occs2[i] += 1
 
-res = 0
-
-for i in range(len(occs1)):
-    res += i * occs1[i] * occs2[i]
+res = sum([i * occs1[i] * occs2[i] for i in range(len(occs1))])
 
 print(res)
