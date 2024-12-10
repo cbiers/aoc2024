@@ -3,8 +3,6 @@ def count_trails(m, p):
     for c in [(p[0] + i, p[1] + j) for i, j in [(1, 0), (-1, 0), (0, 1), (0, -1)]]
     if 0 <= c[0] < len(m) and 0 <= c[1] < len(m[0]) and m[c[0]][c[1]] == m[p[0]][p[1]] + 1)
 
-example = False
-
-m = [[int(c) for c in line.strip()] for line in  open(f"10/{'ex' if example else 'in'}.txt", "r").readlines()]
+m = [[int(c) for c in line.strip()] for line in  open(f"10/{'ex' if False else 'in'}.txt", "r").readlines()]
 
 print(sum([count_trails(m, zero) for zero in [(i, j) for i in range(len(m)) for j in range(len(m[0])) if m[i][j] == 0]]))

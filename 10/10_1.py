@@ -6,8 +6,6 @@ def reachable(m, s, e):
 def all_nums(m, n):
     return [(i, j) for i in range(len(m)) for j in range(len(m[0])) if m[i][j] == n]
 
-example = False
-
-m = [[int(c) for c in line.strip()] for line in open(f"10/{'ex' if example else 'in'}.txt", "r").readlines()]
+m = [[int(c) for c in line.strip()] for line in open(f"10/{'ex' if False else 'in'}.txt", "r").readlines()]
 
 print([reachable(m, zero, nine) for zero in all_nums(m, 0) for nine in all_nums(m, 9)].count(True))
