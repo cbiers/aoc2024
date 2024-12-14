@@ -19,8 +19,6 @@ for i in range(100):
     for robot in robots:
         robot["pos"] = ((robot["pos"][0] + robot["vel"][0]) % width, (robot["pos"][1] + robot["vel"][1]) % height)
 
-print(robots)
-
 q1 = list(filter(lambda robot: robot["pos"][0] < width // 2 and robot["pos"][1] < height // 2, robots))
 q2 = list(filter(lambda robot: robot["pos"][0] > width // 2 and robot["pos"][1] < height // 2, robots))
 q3 = list(filter(lambda robot: robot["pos"][0] < width // 2 and robot["pos"][1] > height // 2, robots))
