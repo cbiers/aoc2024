@@ -13,7 +13,7 @@ for line in input.readlines():
     pos = (int(posparts[0][posparts[0].index("=") + 1:]), int(posparts[1]))
     velparts = parts[1].split(",")
     vel = (int(velparts[0][velparts[0].index("=") + 1:]) + width, int(velparts[1]) + height)
-    robots.append({"pos": pos, "vel": vel})    
+    robots.append({"pos": pos, "vel": vel})
 
 for i in range(100):
     for robot in robots:
