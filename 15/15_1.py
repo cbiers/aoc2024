@@ -1,4 +1,4 @@
-example = False
+example = True
 
 input_map = open(f"15/map_{'ex' if example else 'in'}.txt", "r")
 input_moves = open(f"15/move_{'ex' if example else 'in'}.txt", "r")
