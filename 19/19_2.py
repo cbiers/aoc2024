@@ -1,23 +1,19 @@
 example = False
 lines = open(f"19/{'ex' if example else 'in'}.txt", "r").readlines()
 
-def isPossible(pattern, stripes):
+def is_possible(pattern):
     if pattern in nope_cache:
         return False
-    if pattern == "":
+    if pattern in cache or pattern == "":
         return True
-    possible = False
     for stripe in stripes:
-        if pattern.startswith(stripe):
-            if isPossible(pattern[len(stripe):], stripes):
-                possible = True
-                cache.add(pattern)
-                break
-    if possible == False:
-        nope_cache.add(pattern)
-    return possible
+        if pattern.startswith(stripe) and is_possible(pattern[len(stripe):]):
+            cache.add(pattern)
+            return True
+    nope_cache.add(pattern)
+    return False
 
-def combinations(pattern, stripes):
+def combinations(pattern):
     if pattern in comb_cache:
         return comb_cache[pattern]
     if pattern == "":
@@ -25,11 +21,8 @@ def combinations(pattern, stripes):
     res = 0
     for stripe in stripes:
         if pattern.startswith(stripe):
-            res += combinations(pattern[len(stripe):], stripes)
-    if pattern in comb_cache:
-        comb_cache[pattern] += res
-    else:
-        comb_cache[pattern] = res
+            res += combinations(pattern[len(stripe):])
+    comb_cache[pattern] = comb_cache.get(pattern, 0) + res
     return res
 
 stripes = lines[0].strip().split(", ")
@@ -40,7 +33,7 @@ comb_cache = {}
 count = 0
 
 for line in lines[2:]:
-    if isPossible(line.strip(), stripes):
-        count += combinations(line.strip(), stripes)
+    if is_possible(line.strip()):
+        count += combinations(line.strip())
 
 print(count)
