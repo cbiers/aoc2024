@@ -8,11 +8,10 @@ def is_possible(pattern):
 
 def combinations(pattern):
     if pattern not in comb_cache:
-        comb_cache[pattern] = sum(combinations(pattern[len(stripe):]) for stripe in stripes if pattern.startswith(stripe))
+        comb_cache[pattern] = sum(combinations(pattern[len(stripe):]) for stripe in filter(pattern.startswith, stripes))
     return comb_cache[pattern]
 
 stripes = lines[0].strip().split(", ")
-patterns = [line.strip() for line in lines[2:]]
 cache, comb_cache = {}, {"": 1}
 
-print(sum(combinations(pattern) for pattern in patterns if is_possible(pattern)))
+print(sum(combinations(pattern) for pattern in filter(is_possible, map(str.strip, lines[2:]))))

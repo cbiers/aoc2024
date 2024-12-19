@@ -7,7 +7,6 @@ def is_possible(pattern):
     return cache[pattern]
 
 stripes = lines[0].strip().split(", ")
-patterns = [line.strip() for line in lines[2:]]
 cache = {}
 
-print(sum(1 for pattern in patterns if is_possible(pattern)))
+print(sum(1 for pattern in filter(is_possible, map(str.strip, lines[2:]))))
