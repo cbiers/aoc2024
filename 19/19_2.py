@@ -1,5 +1,5 @@
 example = False
-lines = open(f"19/{'ex' if example else 'in'}.txt", "r").readlines()
+file = map(str.strip, open(f"19/{'ex' if example else 'in'}.txt", "r"))
 
 def is_possible(pattern):
     if pattern not in cache:
@@ -11,7 +11,7 @@ def combinations(pattern):
         comb_cache[pattern] = sum(combinations(pattern[len(stripe):]) for stripe in filter(pattern.startswith, stripes))
     return comb_cache[pattern]
 
-stripes = lines[0].strip().split(", ")
+stripes = next(file).split(", ")
 cache, comb_cache = {}, {"": 1}
 
-print(sum(combinations(pattern) for pattern in filter(is_possible, map(str.strip, lines[2:]))))
+print(sum(combinations(pattern) for pattern in filter(is_possible, file)))
